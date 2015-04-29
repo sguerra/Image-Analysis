@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     mylabel.cpp \
-    dlgimage.cpp
+    dlgimage.cpp \
+    qcustomplot.cpp
 
 HEADERS  += mainwindow.h \
     dlgimage.h \
-    mylabel.h
+    mylabel.h \
+    qcustomplot.h
 
 FORMS    += mainwindow.ui \
     dlgimage.ui
