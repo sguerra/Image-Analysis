@@ -13,8 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    mylabel.cpp \
+    dlgimage.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    dlgimage.h \
+    mylabel.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dlgimage.ui
