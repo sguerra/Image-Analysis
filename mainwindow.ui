@@ -26,8 +26,14 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>false</bool>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -44,6 +50,7 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <addaction name="actionGrayscale"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -75,6 +82,9 @@
    </property>
   </action>
   <action name="actionOpen">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Open</string>
    </property>
@@ -92,6 +102,11 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionGrayscale">
+   <property name="text">
+    <string>Grayscale</string>
    </property>
   </action>
  </widget>
