@@ -18,12 +18,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     mylabel.cpp \
     dlgimage.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    imageprocessor.cpp
 
 HEADERS  += mainwindow.h \
     dlgimage.h \
     mylabel.h \
-    qcustomplot.h
+    qcustomplot.h \
+    imageprocessor.h
 
 FORMS    += mainwindow.ui \
     dlgimage.ui
