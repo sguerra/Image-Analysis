@@ -26,6 +26,20 @@ void dlgImage::setStatusBar(QStatusBar *sb) {
     ui->label->setStatusBar(sb);
 }
 
+QImage dlgImage::getImage(){
+
+   const QPixmap* pixmap = ui->label->pixmap();
+   QImage  image = pixmap->toImage();
+
+    return image;
+}
+
+void dlgImage::setImage(QImage image){
+
+   MyLabel* myLabel = ui->label;
+   myLabel->setPixmap(QPixmap::fromImage(image));
+}
+
 
 
 

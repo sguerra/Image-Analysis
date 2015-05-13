@@ -20,6 +20,9 @@ public:
     void setFileName(QString file);
     void setStatusBar(QStatusBar *sb);
 
+    QImage getImage();
+    void setImage(QImage image);
+
 private:
     Ui::dlgImage *ui;
 
