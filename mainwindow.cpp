@@ -27,6 +27,9 @@ void MainWindow::open() {
 
     fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "/", tr("Image Files (*.png *.jpg *.bmp)"));
 
+    if(fileName == NULL)
+        return;
+
     //pix.load(fileName);
     //ui->label->setPixmap(pix);
 
