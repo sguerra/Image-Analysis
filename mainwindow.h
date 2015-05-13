@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMdiArea>
+#include "imageprocessor.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,9 +21,15 @@ private slots:
     void open();
     void save_as();
 
+    void gray_scale();
+
 private:
     Ui::MainWindow *ui;
     QMdiArea mdiArea;
+
+    QWidget* getSelectedWindow();
+
+    ImageProcessor imageProcessor;
 };
 
 #endif // MAINWINDOW_H
