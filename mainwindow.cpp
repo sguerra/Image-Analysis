@@ -84,7 +84,7 @@ void MainWindow::gray_scale() {
     dialog->setImage(gray);
 }
 
-QWidget* MainWindow::getSelectedWindow(){
+dlgImage* MainWindow::getSelectedWindow(){
 
     QMdiSubWindow* subWindow  = mdiArea.activeSubWindow();
 
@@ -93,7 +93,8 @@ QWidget* MainWindow::getSelectedWindow(){
 
     QWidget* widget = subWindow->widget();
 
-    return widget;
+    dlgImage* selectedWindow = dynamic_cast<dlgImage*>(widget);
+    return selectedWindow;
 }
 
 void MainWindow::show_histogram()

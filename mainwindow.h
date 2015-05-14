@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMdiArea>
 #include "imageprocessor.h"
+#include "dlgimage.h"
 #include "dlghistogram.h"
 
 namespace Ui {
@@ -32,7 +33,7 @@ private:
     ImageProcessor imageProcessor;
     dlgHistogram* histogramDlg;
 
-    QWidget* getSelectedWindow();
+    dlgImage* getSelectedWindow();
 
 };
 
