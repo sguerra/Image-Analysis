@@ -36,6 +36,8 @@ private:
     dlgImage* selectedImageDlg;
     dlgImage* getSelectedWindow();
 
+    void update_histogram();
+
 };
 
 #endif // MAINWINDOW_H

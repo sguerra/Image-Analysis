@@ -39,8 +39,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// Private Methods
+
 void MainWindow::open() {
-    //QPixmap pix;
+
     QString fileName;
 
     fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "/", tr("Image Files (*.png *.jpg *.bmp)"));
@@ -58,8 +60,9 @@ void MainWindow::open() {
     mdiArea.addSubWindow(w);
     w->show();
 
-    getSelectedWindow();
+    this->update_histogram();
 }
+
 
 void MainWindow::save_as() {
     QString fileName;
@@ -109,21 +112,17 @@ void MainWindow::show_histogram()
 
     if(actionChecked){
         parent->show();
-
-        dlgImage* selected = this->getSelectedWindow();
-        histogramDlg->setImage(selected);
-
+        this->update_histogram();
     }else{
         parent->hide();
     }
-
 }
 
-
-
-
-
-
+void MainWindow::update_histogram()
+{
+    dlgImage* selected = this->getSelectedWindow();
+    histogramDlg->setImage(selected);
+}
 
 
 
