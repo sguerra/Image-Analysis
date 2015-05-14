@@ -58,6 +58,7 @@ void MainWindow::open() {
     mdiArea.addSubWindow(w);
     w->show();
 
+    getSelectedWindow();
 }
 
 void MainWindow::save_as() {
@@ -92,9 +93,13 @@ dlgImage* MainWindow::getSelectedWindow(){
         return NULL;
 
     QWidget* widget = subWindow->widget();
-
     dlgImage* selectedWindow = dynamic_cast<dlgImage*>(widget);
-    return selectedWindow;
+
+    if(selectedWindow==NULL)
+        return selectedImageDlg;
+
+    selectedImageDlg = selectedWindow;
+    return selectedImageDlg;
 }
 
 void MainWindow::show_histogram()
@@ -104,6 +109,10 @@ void MainWindow::show_histogram()
 
     if(actionChecked){
         parent->show();
+
+        dlgImage* selected = this->getSelectedWindow();
+        histogramDlg->setImage(selected);
+
     }else{
         parent->hide();
     }

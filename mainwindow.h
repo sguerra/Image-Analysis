@@ -33,6 +33,7 @@ private:
     ImageProcessor imageProcessor;
     dlgHistogram* histogramDlg;
 
+    dlgImage* selectedImageDlg;
     dlgImage* getSelectedWindow();
 
 };
