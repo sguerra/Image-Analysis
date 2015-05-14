@@ -60,18 +60,22 @@ void dlgHistogram::setImage(dlgImage* imageDlg)
     axis->addGraph();
     axis->graph(0)->setData(x, histRed);
     axis->graph(0)->setPen(QPen(Qt::red));
+    axis->graph(0)->setBrush(QBrush(QColor(255, 0, 0, 50)));
 
     axis->addGraph();
     axis->graph(1)->setData(x, histGreen);
     axis->graph(1)->setPen(QPen(Qt::green));
+    axis->graph(1)->setBrush(QBrush(QColor(0, 255, 0, 50)));
 
     axis->addGraph();
     axis->graph(2)->setData(x, histBlue);
     axis->graph(2)->setPen(QPen(Qt::blue));
+    axis->graph(2)->setBrush(QBrush(QColor(0, 0, 255, 50)));
 
     axis->addGraph();
     axis->graph(3)->setData(x, histGray);
     axis->graph(3)->setPen(QPen(Qt::black));
+    axis->graph(3)->setBrush(QBrush(QColor(0, 0, 0, 50)));
 
     axis->xAxis->setRange(0, 255);
     axis->yAxis->setRange(0, maxY);
@@ -82,5 +86,4 @@ void dlgHistogram::setImage(dlgImage* imageDlg)
 
 void dlgHistogram::closeEvent(QCloseEvent * e){
     e->ignore();
-    this->parentWidget()->hide();
 }
