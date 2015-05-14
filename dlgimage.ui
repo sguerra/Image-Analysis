@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>260</width>
-    <height>190</height>
+    <width>360</width>
+    <height>280</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,8 +24,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>240</width>
-        <height>170</height>
+        <width>334</width>
+        <height>254</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -68,7 +68,7 @@
   <customwidget>
    <class>MyLabel</class>
    <extends>QLabel</extends>
-   <header location="global">mylabel.h</header>
+   <header>mylabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

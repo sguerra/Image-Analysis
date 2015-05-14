@@ -12,8 +12,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionOpen,SIGNAL(triggered()),this,SLOT(open()));
     connect(ui->actionSave_As,SIGNAL(triggered()),this,SLOT(save_as()));
     connect(ui->actionGrayscale, SIGNAL(triggered()), this, SLOT(gray_scale()));
+    connect(ui->actionHistogram, SIGNAL(triggered()), this, SLOT(show_histogram()));
 
     setCentralWidget(&mdiArea);
+
+    // Histogram dialog
+    histogramDlg = new dlgHistogram(&mdiArea);
+    mdiArea.addSubWindow(histogramDlg);
+
+    histogramDlg->parentWidget()->hide();
 }
 
 MainWindow::~MainWindow()
@@ -30,9 +37,6 @@ void MainWindow::open() {
     if(fileName == NULL)
         return;
 
-    //pix.load(fileName);
-    //ui->label->setPixmap(pix);
-
     ui->statusBar->showMessage(fileName);
 
     dlgImage *w;
@@ -41,7 +45,6 @@ void MainWindow::open() {
     w->setStatusBar(ui->statusBar);
 
     mdiArea.addSubWindow(w);
-
     w->show();
 
 }
@@ -81,6 +84,20 @@ QWidget* MainWindow::getSelectedWindow(){
 
     return widget;
 }
+
+void MainWindow::show_histogram()
+{
+    QWidget* parent = histogramDlg->parentWidget();
+    bool actionChecked = ui->actionHistogram->isChecked();
+
+    if(actionChecked){
+        parent->show();
+    }else{
+        parent->hide();
+    }
+
+}
+
 
 
 

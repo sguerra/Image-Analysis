@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMdiArea>
 #include "imageprocessor.h"
+#include "dlghistogram.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,14 +23,17 @@ private slots:
     void save_as();
 
     void gray_scale();
+    void show_histogram();
 
 private:
     Ui::MainWindow *ui;
     QMdiArea mdiArea;
 
+    ImageProcessor imageProcessor;
+    dlgHistogram* histogramDlg;
+
     QWidget* getSelectedWindow();
 
-    ImageProcessor imageProcessor;
 };
 
 #endif // MAINWINDOW_H
