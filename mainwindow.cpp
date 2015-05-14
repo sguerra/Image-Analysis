@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include <QMdiSubWindow>
 #include "dlgimage.cpp"
+#include <QDesktopWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,6 +15,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionGrayscale, SIGNAL(triggered()), this, SLOT(gray_scale()));
     connect(ui->actionHistogram, SIGNAL(triggered()), this, SLOT(show_histogram()));
 
+    //Window
+    QDesktopWidget desktop;
+
+    int width = geometry().width();
+    int height = geometry().height();
+
+    int screenWidth = desktop.screen()->width();
+    int screenHeight = desktop.screen()->height();
+
+    setGeometry((screenWidth/2)-(width/2),(screenHeight/2)-(height/2),width,height);
     setCentralWidget(&mdiArea);
 
     // Histogram dialog
