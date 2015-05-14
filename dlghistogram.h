@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <QCloseEvent>
+#include "dlgimage.h"
+#include "imageprocessor.h"
 
 namespace Ui {
 class dlgHistogram;
@@ -16,8 +18,11 @@ public:
     explicit dlgHistogram(QWidget *parent = 0);
     ~dlgHistogram();
 
+    void setImage(dlgImage* imageDlg);
+
 private:
     Ui::dlgHistogram *ui;
+    ImageProcessor imageProcessor;
 
 protected:
     void closeEvent(QCloseEvent * e);

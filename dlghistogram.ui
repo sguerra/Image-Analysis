@@ -86,15 +86,10 @@
        <string>GRAY</string>
       </property>
      </widget>
-     <zorder>widget</zorder>
-     <zorder>chkRed</zorder>
-     <zorder>chkGreen</zorder>
-     <zorder>chkBlue</zorder>
-     <zorder>chkGray</zorder>
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="QCustomPlot" name="widget" native="true"/>
+    <widget class="QCustomPlot" name="pltHistogram" native="true"/>
    </item>
   </layout>
  </widget>
