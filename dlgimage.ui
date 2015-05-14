@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>360</width>
-    <height>280</height>
+    <width>500</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Image</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -24,8 +24,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>334</width>
-        <height>254</height>
+        <width>474</width>
+        <height>474</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">

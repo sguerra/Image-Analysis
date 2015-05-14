@@ -29,8 +29,83 @@
    <property name="sizeConstraint">
     <enum>QLayout::SetDefaultConstraint</enum>
    </property>
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Show</string>
+     </property>
+     <widget class="QCheckBox" name="chkRed">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>R</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkGreen">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>30</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>G</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkBlue">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>30</y>
+        <width>41</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>B</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkGray">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>30</y>
+        <width>89</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>GRAY</string>
+      </property>
+     </widget>
+     <zorder>widget</zorder>
+     <zorder>chkRed</zorder>
+     <zorder>chkGreen</zorder>
+     <zorder>chkBlue</zorder>
+     <zorder>chkGray</zorder>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QCustomPlot" name="widget" native="true"/>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
