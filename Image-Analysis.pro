@@ -20,14 +20,16 @@ SOURCES += main.cpp\
     dlgimage.cpp \
     qcustomplot.cpp \
     imageprocessor.cpp \
-    dlghistogram.cpp
+    dlghistogram.cpp \
+    mymdiarea.cpp
 
 HEADERS  += mainwindow.h \
     dlgimage.h \
     mylabel.h \
     qcustomplot.h \
     imageprocessor.h \
-    dlghistogram.h
+    dlghistogram.h \
+    mymdiarea.h
 
 FORMS    += mainwindow.ui \
     dlgimage.ui \

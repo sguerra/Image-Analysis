@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMdiArea>
+#include "mymdiarea.h"
 #include "imageprocessor.h"
 #include "dlgimage.h"
 #include "dlghistogram.h"
@@ -28,13 +28,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QMdiArea mdiArea;
+    MyMdiArea mdiArea;
 
     ImageProcessor imageProcessor;
     dlgHistogram* histogramDlg;
-
-    dlgImage* selectedImageDlg;
-    dlgImage* getSelectedWindow();
 
     void update_histogram();
 

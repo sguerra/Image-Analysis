@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Histogram dialog
     histogramDlg = new dlgHistogram(&mdiArea);
+    mdiArea.setHistogram(histogramDlg);
     mdiArea.addSubWindow(histogramDlg);
 
     histogramDlg->parentWidget()->hide();
@@ -75,7 +76,7 @@ void MainWindow::save_as() {
 
 void MainWindow::gray_scale() {
 
-    QWidget* selectedWindow = getSelectedWindow();
+    QWidget* selectedWindow = this->mdiArea.getSelectedWindow();
 
     if(selectedWindow==NULL)
         return;
@@ -86,23 +87,6 @@ void MainWindow::gray_scale() {
     QImage gray = imageProcessor.grayScale(image);
 
     dialog->setImage(gray);
-}
-
-dlgImage* MainWindow::getSelectedWindow(){
-
-    QMdiSubWindow* subWindow  = mdiArea.activeSubWindow();
-
-    if(subWindow == 0)
-        return NULL;
-
-    QWidget* widget = subWindow->widget();
-    dlgImage* selectedWindow = dynamic_cast<dlgImage*>(widget);
-
-    if(selectedWindow==NULL)
-        return selectedImageDlg;
-
-    selectedImageDlg = selectedWindow;
-    return selectedImageDlg;
 }
 
 void MainWindow::show_histogram()
@@ -120,7 +104,7 @@ void MainWindow::show_histogram()
 
 void MainWindow::update_histogram()
 {
-    dlgImage* selected = this->getSelectedWindow();
+    dlgImage* selected = this->mdiArea.getSelectedWindow();
     histogramDlg->setImage(selected);
 }
 
