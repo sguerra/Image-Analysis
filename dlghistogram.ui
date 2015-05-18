@@ -31,8 +31,16 @@
    </property>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox">
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
      <property name="title">
-      <string>Show</string>
+      <string>Channels</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
      <widget class="QCheckBox" name="chkRed">
       <property name="geometry">
@@ -45,6 +53,9 @@
       </property>
       <property name="text">
        <string>R</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QCheckBox" name="chkGreen">
@@ -59,6 +70,9 @@
       <property name="text">
        <string>G</string>
       </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QCheckBox" name="chkBlue">
       <property name="geometry">
@@ -72,6 +86,9 @@
       <property name="text">
        <string>B</string>
       </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QCheckBox" name="chkGray">
       <property name="geometry">
@@ -84,6 +101,9 @@
       </property>
       <property name="text">
        <string>GRAY</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>

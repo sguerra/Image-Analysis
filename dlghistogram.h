@@ -14,15 +14,22 @@ class dlgHistogram : public QDialog
 {
     Q_OBJECT
 
+private:
+    dlgImage* imageDlg;
+
+    Ui::dlgHistogram *ui;
+    ImageProcessor imageProcessor;
+
+    void drawHistograms();
+
 public:
     explicit dlgHistogram(QWidget *parent = 0);
     ~dlgHistogram();
 
     void setImage(dlgImage* imageDlg);
 
-private:
-    Ui::dlgHistogram *ui;
-    ImageProcessor imageProcessor;
+private slots:
+    void chksChanged(int state);
 
 protected:
     void closeEvent(QCloseEvent * e);
