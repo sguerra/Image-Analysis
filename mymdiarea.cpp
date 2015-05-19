@@ -3,7 +3,6 @@
 
 MyMdiArea::MyMdiArea(): QMdiArea()
 {
-    //connect(this, SIGNAL(subWindowActivated(QMdiSubWindow*)), this, SLOT(subWindowChanged(QMdiSubWindow*)));
 }
 
 // Public Methods
@@ -24,16 +23,3 @@ dlgImage* MyMdiArea::getSelectedWindow(){
     selectedImageDlg = selectedWindow;
     return selectedImageDlg;
 }
-
-
-void MyMdiArea::setHistogram(dlgHistogram *histogramDlg){
-    this->histogramDlg = histogramDlg;
-}
-
-// Private Slots
-
-void MyMdiArea::subWindowChanged(QMdiSubWindow* window){
-    dlgImage* imageDlg = this->getSelectedWindow();
-    this->histogramDlg->setImage(imageDlg);
-}
-

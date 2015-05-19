@@ -22,6 +22,9 @@ dlgHistogram::~dlgHistogram()
 
 void dlgHistogram::setImage(dlgImage* imageDlg)
 {
+    if(imageDlg == NULL)
+        return;
+
     this->imageDlg = imageDlg;
     this->drawHistograms();
 }

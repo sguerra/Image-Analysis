@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMdiSubWindow>
 #include "mymdiarea.h"
 #include "imageprocessor.h"
 #include "dlgimage.h"
@@ -25,6 +26,8 @@ private slots:
 
     void gray_scale();
     void show_histogram();
+
+    void subwindow_changed(QMdiSubWindow* window);
 
 private:
     Ui::MainWindow *ui;

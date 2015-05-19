@@ -10,10 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     connect(ui->actionOpen,SIGNAL(triggered()),this,SLOT(open()));
     connect(ui->actionSave_As,SIGNAL(triggered()),this,SLOT(save_as()));
     connect(ui->actionGrayscale, SIGNAL(triggered()), this, SLOT(gray_scale()));
     connect(ui->actionHistogram, SIGNAL(triggered()), this, SLOT(show_histogram()));
+
+    connect(&mdiArea, SIGNAL(subWindowActivated(QMdiSubWindow*)), this, SLOT(subwindow_changed(QMdiSubWindow*)));
 
     //Window
     QDesktopWidget desktop;
@@ -29,7 +32,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Histogram dialog
     histogramDlg = new dlgHistogram(&mdiArea);
-    mdiArea.setHistogram(histogramDlg);
     mdiArea.addSubWindow(histogramDlg);
 
     histogramDlg->parentWidget()->hide();
@@ -40,10 +42,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// Private Methods
+// Private SLOTS
 
-void MainWindow::open() {
-
+void MainWindow::open()
+{
     QString fileName;
 
     fileName = QFileDialog::getOpenFileName(this, tr("Open Image"), "/", tr("Image Files (*.png *.jpg *.bmp)"));
@@ -65,17 +67,17 @@ void MainWindow::open() {
 }
 
 
-void MainWindow::save_as() {
+void MainWindow::save_as()
+{
     QString fileName;
-
     fileName = QFileDialog::getSaveFileName(this, tr("Save Image"), "/", tr("Image Files (*.png *.jpg *.bmp)"));
 
     ui->statusBar->showMessage(fileName);
     //ui->label->pixmap()->save(fileName);
 }
 
-void MainWindow::gray_scale() {
-
+void MainWindow::gray_scale()
+{
     QWidget* selectedWindow = this->mdiArea.getSelectedWindow();
 
     if(selectedWindow==NULL)
@@ -106,6 +108,17 @@ void MainWindow::update_histogram()
 {
     dlgImage* selected = this->mdiArea.getSelectedWindow();
     histogramDlg->setImage(selected);
+}
+
+void MainWindow::subwindow_changed(QMdiSubWindow* window)
+{
+    if(window==NULL)
+        return;
+
+    QWidget* widget = window->widget();
+    dlgImage* selectedWindow = dynamic_cast<dlgImage*>(widget);
+
+    this->histogramDlg->setImage(selectedWindow);
 }
 
 

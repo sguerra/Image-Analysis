@@ -14,13 +14,7 @@ private:
 public:
     MyMdiArea();
 
-    dlgHistogram* histogramDlg;
-    void setHistogram(dlgHistogram* histogramDlg);
-
     dlgImage* getSelectedWindow();
-
-private slots:
-    void subWindowChanged(QMdiSubWindow* window);
 
 };
 
