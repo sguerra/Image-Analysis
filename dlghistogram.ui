@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
+    <width>350</width>
     <height>400</height>
    </rect>
   </property>
@@ -29,6 +29,11 @@
    <property name="sizeConstraint">
     <enum>QLayout::SetDefaultConstraint</enum>
    </property>
+   <item row="0" column="0">
+    <widget class="QCustomPlot" name="pltHistogram" native="true">
+     <zorder>groupBox</zorder>
+    </widget>
+   </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="font">
@@ -61,7 +66,7 @@
      <widget class="QCheckBox" name="chkGreen">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>70</x>
         <y>30</y>
         <width>89</width>
         <height>20</height>
@@ -77,7 +82,7 @@
      <widget class="QCheckBox" name="chkBlue">
       <property name="geometry">
        <rect>
-        <x>110</x>
+        <x>130</x>
         <y>30</y>
         <width>41</width>
         <height>20</height>
@@ -93,7 +98,7 @@
      <widget class="QCheckBox" name="chkGray">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>190</x>
         <y>30</y>
         <width>89</width>
         <height>20</height>
@@ -106,10 +111,94 @@
        <bool>true</bool>
       </property>
      </widget>
+     <widget class="QSlider" name="sldrMin">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>241</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="sldrMax">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>251</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+      <property name="value">
+       <number>255</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnApply">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>140</y>
+        <width>91</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>apply</string>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblRange">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>70</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="text">
+       <string>0 - 255</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+     </widget>
     </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QCustomPlot" name="pltHistogram" native="true"/>
    </item>
   </layout>
  </widget>

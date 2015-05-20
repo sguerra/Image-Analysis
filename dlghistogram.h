@@ -21,6 +21,10 @@ private:
     ImageProcessor imageProcessor;
 
     void drawHistograms();
+    void setLblRange();
+
+    int minValue;
+    int maxValue;
 
 public:
     explicit dlgHistogram(QWidget *parent = 0);
@@ -30,6 +34,8 @@ public:
 
 private slots:
     void chksChanged(int state);
+    void sldrMinChanged(int value);
+    void sldrMaxChanged(int value);
 
 protected:
     void closeEvent(QCloseEvent * e);

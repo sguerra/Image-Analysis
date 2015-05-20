@@ -7,10 +7,15 @@ dlgHistogram::dlgHistogram(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->minValue = 0;
+    this->maxValue = 255;
+
     connect(ui->chkRed, SIGNAL(stateChanged(int)), this, SLOT(chksChanged(int)));
     connect(ui->chkGreen, SIGNAL(stateChanged(int)), this, SLOT(chksChanged(int)));
     connect(ui->chkBlue, SIGNAL(stateChanged(int)), this, SLOT(chksChanged(int)));
     connect(ui->chkGray, SIGNAL(stateChanged(int)), this, SLOT(chksChanged(int)));
+    connect(ui->sldrMin, SIGNAL(valueChanged(int)), this, SLOT(sldrMinChanged(int)));
+    connect(ui->sldrMax, SIGNAL(valueChanged(int)), this, SLOT(sldrMaxChanged(int)));
 }
 
 dlgHistogram::~dlgHistogram()
@@ -100,10 +105,31 @@ void dlgHistogram::drawHistograms(){
     axis->replot();
 }
 
+void dlgHistogram::setLblRange()
+{
+    QString format = QString::number(this->minValue);
+    format.append(" - ");
+    format.append(QString::number(this->maxValue));
+
+    ui->lblRange->setText(format);
+}
+
 // Events
 
  void dlgHistogram::chksChanged(int state){
     this->drawHistograms();
+ }
+
+ void dlgHistogram::sldrMinChanged(int value){
+    this->minValue = value;
+     ui->sldrMax->setMinimum(value+1);
+    this->setLblRange();
+ }
+
+ void dlgHistogram::sldrMaxChanged(int value){
+    this->maxValue = value;
+     ui->sldrMin->setMaximum(value-1);
+     this->setLblRange();
  }
 
 void dlgHistogram::closeEvent(QCloseEvent * e){
