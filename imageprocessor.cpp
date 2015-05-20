@@ -41,16 +41,21 @@ QVector<double> ImageProcessor::histChannel(QImage image, QColor color)
 
 // Public Methods
 
-QImage ImageProcessor::grayScale(QImage image)
+void ImageProcessor::setImage(QImage image)
 {
-    int width = image.width();
-    int height = image.height();
+    this->image =  image;
+}
+
+QImage ImageProcessor::grayScale()
+{
+    int width = this->image.width();
+    int height = this->image.height();
 
     QImage gray(width, height, QImage::Format_ARGB32);
 
     for(int j = 0; j < height; j++)
     {
-        QRgb* row = (QRgb*)image.scanLine(j);
+        QRgb* row = (QRgb*)this->image.scanLine(j);
 
         for(int i = 0; i < width; i++)
         {
@@ -71,19 +76,20 @@ QImage ImageProcessor::grayScale(QImage image)
 }
 
 
-QVector<double> ImageProcessor::histRed(QImage image)
+QVector<double> ImageProcessor::histRed()
 {
-    return this->histChannel(image, QColor(Qt::red));
+    return this->histChannel(this->image, QColor(Qt::red));
 }
-QVector<double> ImageProcessor::histGreen(QImage image)
+QVector<double> ImageProcessor::histGreen()
 {
-    return this->histChannel(image, QColor(Qt::green));
+    return this->histChannel(this->image, QColor(Qt::green));
 }
-QVector<double> ImageProcessor::histBlue(QImage image)
+QVector<double> ImageProcessor::histBlue()
 {
-    return this->histChannel(image, QColor(Qt::blue));
+    return this->histChannel(this->image, QColor(Qt::blue));
 }
-QVector<double> ImageProcessor::histGray(QImage image)
+QVector<double> ImageProcessor::histGray()
 {
-    return this->histChannel(this->grayScale(image), QColor(Qt::red));
+    return this->histChannel(this->grayScale(), QColor(Qt::red));
 }
+

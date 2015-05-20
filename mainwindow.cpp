@@ -86,8 +86,9 @@ void MainWindow::gray_scale()
     dlgImage* dialog = (dlgImage*)selectedWindow;
 
     QImage image = dialog->getImage();
-    QImage gray = imageProcessor.grayScale(image);
+    imageProcessor.setImage(image);
 
+    QImage gray = imageProcessor.grayScale();
     dialog->setImage(gray);
 }
 

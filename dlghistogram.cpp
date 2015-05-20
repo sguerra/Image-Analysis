@@ -40,11 +40,12 @@ void dlgHistogram::drawHistograms(){
         return;
 
     QImage image = this->imageDlg->getImage();
+    this->imageProcessor.setImage(image);
 
-    QVector<double> histRed = this->imageProcessor.histRed(image);
-    QVector<double> histGreen = this->imageProcessor.histGreen(image);
-    QVector<double> histBlue = this->imageProcessor.histBlue(image);
-    QVector<double> histGray = this->imageProcessor.histGray(image);
+    QVector<double> histRed = this->imageProcessor.histRed();
+    QVector<double> histGreen = this->imageProcessor.histGreen();
+    QVector<double> histBlue = this->imageProcessor.histBlue();
+    QVector<double> histGray = this->imageProcessor.histGray();
 
     QVector<double> x(255);
     for (int i=0; i< x.length(); ++i){
