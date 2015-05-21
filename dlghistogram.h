@@ -36,6 +36,7 @@ private slots:
     void chksChanged(int state);
     void sldrMinChanged(int value);
     void sldrMaxChanged(int value);
+    void btnApplyClicked(bool checked);
 
 protected:
     void closeEvent(QCloseEvent * e);

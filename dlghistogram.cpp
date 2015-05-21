@@ -16,6 +16,8 @@ dlgHistogram::dlgHistogram(QWidget *parent) :
     connect(ui->chkGray, SIGNAL(stateChanged(int)), this, SLOT(chksChanged(int)));
     connect(ui->sldrMin, SIGNAL(valueChanged(int)), this, SLOT(sldrMinChanged(int)));
     connect(ui->sldrMax, SIGNAL(valueChanged(int)), this, SLOT(sldrMaxChanged(int)));
+
+    connect(ui->btnApply, SIGNAL(clicked(bool)), this, SLOT(btnApplyClicked(bool)));
 }
 
 dlgHistogram::~dlgHistogram()
@@ -131,6 +133,28 @@ void dlgHistogram::setLblRange()
     this->maxValue = value;
      ui->sldrMin->setMaximum(value-1);
      this->setLblRange();
+ }
+
+ void dlgHistogram::btnApplyClicked(bool checked){
+
+     if(ui->chkGray->isChecked()){
+         this->imageProcessor.adjustGray(this->maxValue, this->minValue);
+     }
+     else
+     {
+         if(ui->chkRed->isChecked()){
+             this->imageProcessor.adjustRed(this->maxValue, this->minValue);
+         }
+         if(ui->chkGreen->isChecked()){
+             this->imageProcessor.adjustGreen(this->maxValue, this->minValue);
+         }
+         if(ui->chkBlue->isChecked()){
+             this->imageProcessor.adjustBlue(this->maxValue, this->minValue);
+         }
+     }
+
+     this->imageDlg->setImage(this->imageProcessor.getImage());
+     this->drawHistograms();
  }
 
 void dlgHistogram::closeEvent(QCloseEvent * e){
