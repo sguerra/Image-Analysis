@@ -9,10 +9,13 @@ class ImageProcessor
 private:
     QImage image;
     QVector<double> histChannel(QImage image, QColor color);
+    void adjustImageChannel(QVector<double> transform, QColor color);
+    void adjustChannel(QColor color, int Xmax, int Xmin);
 
 public:
     ImageProcessor();
     void setImage(QImage image);
+    QImage getImage();
 
     QImage grayScale();
 
@@ -20,6 +23,11 @@ public:
     QVector<double> histGreen();
     QVector<double> histBlue();
     QVector<double> histGray();
+
+    void adjustRed(int Xmax, int Xmin);
+    void adjustGreen(int Xmax, int Xmin);
+    void adjustBlue(int Xmax, int Xmin);
+    void adjustGray(int Xmax, int Xmin);
 
 };
 
