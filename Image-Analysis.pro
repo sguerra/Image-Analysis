@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     qcustomplot.cpp \
     imageprocessor.cpp \
     dlghistogram.cpp \
-    mymdiarea.cpp
+    mymdiarea.cpp \
+    dlgbinarization.cpp
 
 HEADERS  += mainwindow.h \
     dlgimage.h \
@@ -29,8 +30,10 @@ HEADERS  += mainwindow.h \
     qcustomplot.h \
     imageprocessor.h \
     dlghistogram.h \
-    mymdiarea.h
+    mymdiarea.h \
+    dlgbinarization.h
 
 FORMS    += mainwindow.ui \
     dlgimage.ui \
-    dlghistogram.ui
+    dlghistogram.ui \
+    dlgbinarization.ui
