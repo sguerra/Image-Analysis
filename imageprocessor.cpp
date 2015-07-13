@@ -77,6 +77,32 @@ QImage ImageProcessor::grayScale()
 
     return gray;
 }
+QImage ImageProcessor::binarize(int t)
+{
+    this->image = grayScale();
+
+    int width = this->image.width();
+    int height = this->image.height();
+
+    QImage binarized(width, height, QImage::Format_ARGB32);
+
+    for(int j = 0; j < height; j++)
+    {
+        QRgb* row = (QRgb*)this->image.scanLine(j);
+
+        for(int i = 0; i < width; i++)
+        {
+            QRgb pixel = row[i];
+
+            int gray = qRed(pixel);
+
+            int value = gray < t ? 0 : 255;
+            binarized.setPixel(i, j, qRgb(value, value, value));
+        }
+    }
+
+    return binarized;
+}
 
 // Get Histogram Methods
 

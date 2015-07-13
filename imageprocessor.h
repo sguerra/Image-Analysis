@@ -18,6 +18,7 @@ public:
     QImage getImage();
 
     QImage grayScale();
+    QImage binarize(int t);
 
     QVector<double> histRed();
     QVector<double> histGreen();
