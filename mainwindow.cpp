@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionSave_As,SIGNAL(triggered()),this,SLOT(save_as()));
     connect(ui->actionGrayscale, SIGNAL(triggered()), this, SLOT(gray_scale()));
     connect(ui->actionHistogram, SIGNAL(triggered()), this, SLOT(show_histogram()));
+    connect(ui->actionBinarization, SIGNAL(triggered()), this, SLOT(show_binarization()));
 
     connect(&mdiArea, SIGNAL(subWindowActivated(QMdiSubWindow*)), this, SLOT(subwindow_changed(QMdiSubWindow*)));
 
@@ -35,6 +36,12 @@ MainWindow::MainWindow(QWidget *parent) :
     mdiArea.addSubWindow(histogramDlg);
 
     histogramDlg->parentWidget()->hide();
+
+    // Binarization dialog
+    binarizationDlg = new dlgBinarization(&mdiArea);
+    mdiArea.addSubWindow(binarizationDlg);
+
+    binarizationDlg->parentWidget()->hide();
 }
 
 MainWindow::~MainWindow()
@@ -64,6 +71,7 @@ void MainWindow::open()
     w->show();
 
     this->update_histogram();
+    this->update_binarization();
 }
 
 
@@ -105,10 +113,28 @@ void MainWindow::show_histogram()
     }
 }
 
+void MainWindow::show_binarization()
+{
+    QWidget* parent = binarizationDlg->parentWidget();
+    bool actionChecked = ui->actionBinarization->isChecked();
+
+    if(actionChecked){
+        parent->show();
+        this->update_binarization();
+    }else{
+        parent->hide();
+    }
+}
+
 void MainWindow::update_histogram()
 {
     dlgImage* selected = this->mdiArea.getSelectedWindow();
     histogramDlg->setImage(selected);
+}
+void MainWindow::update_binarization()
+{
+    dlgImage* selected = this->mdiArea.getSelectedWindow();
+    binarizationDlg->setImage(selected);
 }
 
 void MainWindow::subwindow_changed(QMdiSubWindow* window)

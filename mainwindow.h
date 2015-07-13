@@ -7,6 +7,7 @@
 #include "imageprocessor.h"
 #include "dlgimage.h"
 #include "dlghistogram.h"
+#include "dlgbinarization.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,7 @@ private slots:
 
     void gray_scale();
     void show_histogram();
+    void show_binarization();
 
     void subwindow_changed(QMdiSubWindow* window);
 
@@ -35,8 +37,10 @@ private:
 
     ImageProcessor imageProcessor;
     dlgHistogram* histogramDlg;
+    dlgBinarization* binarizationDlg;
 
     void update_histogram();
+    void update_binarization();
 
 };
 

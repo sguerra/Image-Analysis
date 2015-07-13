@@ -53,6 +53,7 @@
     <addaction name="actionGrayscale"/>
     <addaction name="separator"/>
     <addaction name="actionHistogram"/>
+    <addaction name="actionBinarization"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -117,6 +118,14 @@
    </property>
    <property name="text">
     <string>Histogram</string>
+   </property>
+  </action>
+  <action name="actionBinarization">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Binarization</string>
    </property>
   </action>
  </widget>
