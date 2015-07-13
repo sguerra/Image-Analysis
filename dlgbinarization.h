@@ -19,9 +19,9 @@ private:
     ImageProcessor imageProcessor;
 
     Ui::dlgBinarization *ui;
-    int t;
+    int threshold;
 
-    void setLblT();
+    void setLblThreshold();
 
 public:
     explicit dlgBinarization(QWidget *parent = 0);
@@ -30,7 +30,7 @@ public:
     void setImage(dlgImage* imageDlg);
 
 private slots:
-    void sldrTChanged(int value);
+    void sldrThresholdChanged(int value);
     void btnApplyClicked(bool checked);
 
 protected:

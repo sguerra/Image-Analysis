@@ -7,9 +7,9 @@ dlgBinarization::dlgBinarization(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->t = 0;
+    this->threshold = 0;
 
-    connect(ui->sldrT, SIGNAL(valueChanged(int)), this, SLOT(sldrTChanged(int)));
+    connect(ui->sldrThreshold, SIGNAL(valueChanged(int)), this, SLOT(sldrThresholdChanged(int)));
     connect(ui->btnApply, SIGNAL(clicked(bool)), this, SLOT(btnApplyClicked(bool)));
 }
 
@@ -18,11 +18,11 @@ dlgBinarization::~dlgBinarization()
     delete ui;
 }
 
-void dlgBinarization::setLblT(){
-    QString format = QString::number(this->t);
+void dlgBinarization::setLblThreshold(){
+    QString format = QString::number(this->threshold);
     format.prepend("t = ");
 
-    ui->lblT->setText(format);
+    ui->lblThreshold->setText(format);
 }
 
 void dlgBinarization::setImage(dlgImage* imageDlg)
@@ -35,9 +35,9 @@ void dlgBinarization::setImage(dlgImage* imageDlg)
 
 // Private Slots
 
-void dlgBinarization::sldrTChanged(int value){
-   this->t = value;
-   this->setLblT();
+void dlgBinarization::sldrThresholdChanged(int value){
+   this->threshold = value;
+   this->setLblThreshold();
 }
 
 void dlgBinarization::btnApplyClicked(bool checked){
@@ -48,9 +48,10 @@ void dlgBinarization::btnApplyClicked(bool checked){
     QImage image = this->imageDlg->getImage();
     this->imageProcessor.setImage(image);
 
-    image = this->imageProcessor.binarize(this->t);
+    image = this->imageProcessor.binarize(this->threshold);
     this->imageDlg->setImage(image);
 }
+
 
 // Events
 

@@ -35,7 +35,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QSlider" name="sldrT">
+  <widget class="QSlider" name="sldrThreshold">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -51,7 +51,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="lblT">
+  <widget class="QLabel" name="lblThreshold">
    <property name="geometry">
     <rect>
      <x>130</x>
