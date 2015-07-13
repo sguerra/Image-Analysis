@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QCloseEvent>
 #include "dlgimage.h"
+#include "imageprocessor.h"
 
 namespace Ui {
 class dlgBinarization;
@@ -15,6 +16,7 @@ class dlgBinarization : public QDialog
 
 private:
     dlgImage* imageDlg;
+    ImageProcessor imageProcessor;
 
     Ui::dlgBinarization *ui;
     int t;
@@ -28,7 +30,8 @@ public:
     void setImage(dlgImage* imageDlg);
 
 private slots:
-    void sldrChanged(int value);
+    void sldrTChanged(int value);
+    void btnApplyClicked(bool checked);
 
 protected:
     void closeEvent(QCloseEvent * e);

@@ -8,7 +8,9 @@ dlgBinarization::dlgBinarization(QWidget *parent) :
     ui->setupUi(this);
 
     this->t = 0;
-    connect(ui->sldrT, SIGNAL(valueChanged(int)), this, SLOT(sldrChanged(int)));
+
+    connect(ui->sldrT, SIGNAL(valueChanged(int)), this, SLOT(sldrTChanged(int)));
+    connect(ui->btnApply, SIGNAL(clicked(bool)), this, SLOT(btnApplyClicked(bool)));
 }
 
 dlgBinarization::~dlgBinarization()
@@ -31,10 +33,26 @@ void dlgBinarization::setImage(dlgImage* imageDlg)
     this->imageDlg = imageDlg;
 }
 
-void dlgBinarization::sldrChanged(int value){
+// Private Slots
+
+void dlgBinarization::sldrTChanged(int value){
    this->t = value;
    this->setLblT();
 }
+
+void dlgBinarization::btnApplyClicked(bool checked){
+
+    if(this->imageDlg == NULL)
+        return;
+
+    QImage image = this->imageDlg->getImage();
+    this->imageProcessor.setImage(image);
+
+    image = this->imageProcessor.binarize(this->t);
+    this->imageDlg->setImage(image);
+}
+
+// Events
 
 void dlgBinarization::closeEvent(QCloseEvent * e){
     e->ignore();
