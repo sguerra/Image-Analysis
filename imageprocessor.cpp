@@ -103,6 +103,9 @@ QImage ImageProcessor::binarize(int t)
 
     return binarized;
 }
+int ImageProcessor::getOtsuThreshold(){
+    return 122;
+}
 
 // Get Histogram Methods
 

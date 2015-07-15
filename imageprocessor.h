@@ -19,6 +19,7 @@ public:
 
     QImage grayScale();
     QImage binarize(int t);
+    int getOtsuThreshold();
 
     QVector<double> histRed();
     QVector<double> histGreen();

@@ -32,6 +32,7 @@ public:
 private slots:
     void sldrThresholdChanged(int value);
     void btnApplyClicked(bool checked);
+    void btnOtsuClicked(bool checked);
 
 protected:
     void closeEvent(QCloseEvent * e);

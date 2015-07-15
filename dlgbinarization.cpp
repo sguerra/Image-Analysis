@@ -11,6 +11,7 @@ dlgBinarization::dlgBinarization(QWidget *parent) :
 
     connect(ui->sldrThreshold, SIGNAL(valueChanged(int)), this, SLOT(sldrThresholdChanged(int)));
     connect(ui->btnApply, SIGNAL(clicked(bool)), this, SLOT(btnApplyClicked(bool)));
+    connect(ui->btnOtsu, SIGNAL(clicked(bool)), this, SLOT(btnOtsuClicked(bool)));
 }
 
 dlgBinarization::~dlgBinarization()
@@ -52,6 +53,17 @@ void dlgBinarization::btnApplyClicked(bool checked){
     this->imageDlg->setImage(image);
 }
 
+void dlgBinarization::btnOtsuClicked(bool checked){
+
+    if(this->imageDlg == NULL)
+        return;
+
+    QImage image = this->imageDlg->getImage();
+    this->imageProcessor.setImage(image);
+
+    int threshold = this->imageProcessor.getOtsuThreshold();
+    ui->sldrThreshold->setValue(threshold);
+}
 
 // Events
 
