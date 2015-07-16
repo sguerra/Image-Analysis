@@ -1,5 +1,6 @@
 #include "imageprocessor.h"
 #include <QColor>
+#include <QtMath>
 
 ImageProcessor::ImageProcessor()
 {
@@ -104,7 +105,73 @@ QImage ImageProcessor::binarize(int t)
     return binarized;
 }
 int ImageProcessor::getOtsuThreshold(){
-    return 122;
+
+    int threshold = 0;
+    QVector<double> histogram = this->histGray();
+
+    int width = this->image.width();
+    int height = this->image.height();
+    int size = width * height;
+
+    // P1, P2, M1, M2, P1*P2*(M2-M1)^2
+    QVector<double> p1(256);
+    QVector<double> p2(256);
+    QVector<double> m1(256);
+    QVector<double> m2(256);
+
+    QVector<double> p1_p2_m1_m2_2(256);
+
+    double p1sum = 0;
+    double p2sum = 0;
+    double m1sum = 0;
+    double m2sum = 0;
+
+    for(int t = 0; t <= 255; t++){
+        double value = histogram[t];
+        p2sum += value;
+        m2sum += t*value;
+    }
+
+    for(int t = 0; t <= 255; t++){
+
+        double value = histogram[t];
+        p1sum += value;
+        p2sum -= value;
+
+        p1[t] = p1sum/size;
+        p2[t] = 1 - p1[t];
+
+        m1sum += t*value;
+        m2sum -= t*value;
+
+        m1[t] = p1sum ? m1sum/p1sum : 0;
+        m2[t] = p2sum ? m2sum/p2sum : 0;
+
+        p1_p2_m1_m2_2[t] = p1[t] * p2[t] * qPow(m2[t] - m1[t], 2);
+    }
+
+
+    // MAX P1*P2*(M2-M1)^2
+    double aux = 0;
+
+    for(int t = 0; t <= 255; t++){
+
+        threshold = t;
+
+        if(t==0){
+            aux = p1_p2_m1_m2_2[t];
+            continue;
+        }
+
+        if(p1_p2_m1_m2_2[t] >= aux){
+            aux = p1_p2_m1_m2_2[t];
+            continue;
+        }
+
+        break;
+    }
+
+    return threshold;
 }
 
 // Get Histogram Methods
