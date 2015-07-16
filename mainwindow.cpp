@@ -146,6 +146,7 @@ void MainWindow::subwindow_changed(QMdiSubWindow* window)
     dlgImage* selectedWindow = dynamic_cast<dlgImage*>(widget);
 
     this->histogramDlg->setImage(selectedWindow);
+    this->binarizationDlg->setImage(selectedWindow);
 }
 
 
