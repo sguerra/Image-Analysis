@@ -2,6 +2,8 @@
 #define IMAGEPROCESSOR_H
 
 #include <QImage>
+#include <QPair>
+#include "moment.h"
 
 class ImageProcessor
 {
@@ -20,6 +22,9 @@ public:
     QImage grayScale();
     QImage binarize(int t);
     int getOtsuThreshold();
+
+    QVector< QPair<double, double> > getOnes();
+    QVector<Moment> geoMoments();
 
     QVector<double> histRed();
     QVector<double> histGreen();

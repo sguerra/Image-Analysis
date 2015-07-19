@@ -2,6 +2,9 @@
 #include <QColor>
 #include <QtMath>
 
+const int ONE = 255;
+const int ZERO = 0;
+
 ImageProcessor::ImageProcessor()
 {
 
@@ -172,6 +175,70 @@ int ImageProcessor::getOtsuThreshold(){
     }
 
     return threshold;
+}
+
+
+// Hu Moments Methods
+
+QVector< QPair<double, double> >  ImageProcessor::getOnes(){
+    QVector< QPair<double, double> > ones;
+
+    int width = this->image.width();
+    int height = this->image.height();
+
+    for(int j = 0; j < height; j++)
+    {
+        QRgb* row = (QRgb*)this->image.scanLine(j);
+
+        for(int i = 0; i < width; i++)
+        {
+            QRgb pixel = row[i];
+            int value = qRed(pixel);
+
+            if(value==ONE){
+                QPair<double, double> one(i, j);
+                ones.push_back(one);
+            }
+        }
+    }
+
+    return ones;
+}
+QVector<Moment> ImageProcessor::geoMoments(){
+
+    QVector<Moment> moments(10);
+
+    moments[0].setOrder(0, 0);
+    moments[1].setOrder(0, 1);
+    moments[2].setOrder(1, 0);
+    moments[3].setOrder(1, 1);
+    moments[4].setOrder(2, 0);
+    moments[5].setOrder(0, 2);
+    moments[6].setOrder(2, 1);
+    moments[7].setOrder(1, 2);
+    moments[8].setOrder(3, 0);
+    moments[9].setOrder(0, 3);
+
+    QVector< QPair<double, double> > ones = this->getOnes();
+
+    for(int m = 0;m<moments.size();m++){
+        Moment moment = moments[m];
+
+        double value = 0;
+
+        for(int i; i < ones.size();i++){
+
+            QPair<double, double> one = ones[i];
+            double x = one.first;
+            double y = one.second;
+
+            value += qPow(x, moment.getP()) * qPow(y, moment.getQ());
+        }
+
+        moments[m].setValue(value);
+    }
+
+    return moments;
 }
 
 // Get Histogram Methods

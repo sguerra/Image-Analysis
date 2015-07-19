@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     imageprocessor.cpp \
     dlghistogram.cpp \
     mymdiarea.cpp \
-    dlgbinarization.cpp
+    dlgbinarization.cpp \
+    moment.cpp
 
 HEADERS  += mainwindow.h \
     dlgimage.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     imageprocessor.h \
     dlghistogram.h \
     mymdiarea.h \
-    dlgbinarization.h
+    dlgbinarization.h \
+    moment.h
 
 FORMS    += mainwindow.ui \
     dlgimage.ui \
