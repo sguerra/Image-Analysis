@@ -25,6 +25,7 @@ public:
 
     QVector< QPair<double, double> > getOnes();
     QVector<Moment> geoMoments();
+    QVector<Moment> centralMoments();
 
     QVector<double> histRed();
     QVector<double> histGreen();

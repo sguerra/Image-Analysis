@@ -240,6 +240,39 @@ QVector<Moment> ImageProcessor::geoMoments(){
 
     return moments;
 }
+QVector<Moment> ImageProcessor::centralMoments(){
+
+    QVector<Moment> geo_moments = this->geoMoments();
+    QVector<Moment> moments = geo_moments;
+
+    double m00 = geo_moments[0].getValue();
+    double m01 = geo_moments[1].getValue();
+    double m10 = geo_moments[2].getValue();
+
+    // center
+    double xc = m10/m00;
+    double yc = m01/m00;
+
+    QVector< QPair<double, double> > ones = this->getOnes();
+
+    for(int m = 0;m<moments.size();m++){
+        Moment moment = moments[m];
+        double value = 0;
+
+        for(int i; i < ones.size();i++){
+
+            QPair<double, double> one = ones[i];
+            double x = one.first;
+            double y = one.second;
+
+            value += qPow((x-xc), moment.getP()) * qPow((y-yc), moment.getQ());
+        }
+
+        moments[m].setValue(value);
+    }
+
+    return moments;
+}
 
 // Get Histogram Methods
 
