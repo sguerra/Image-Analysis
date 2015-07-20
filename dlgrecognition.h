@@ -3,8 +3,10 @@
 
 #include <QDialog>
 #include <QCloseEvent>
+#include <QPair>
 #include "dlgimage.h"
 #include "imageprocessor.h"
+#include "classitem.h"
 
 namespace Ui {
 class dlgRecognition;
@@ -17,14 +19,21 @@ class dlgRecognition : public QDialog
 private:
     dlgImage* imageDlg;
     ImageProcessor imageProcessor;
+    QVector<ClassItem> database;
 
     Ui::dlgRecognition *ui;
+
+    void addClassItem(QImage image, QString className);
 
 public:
     explicit dlgRecognition(QWidget *parent = 0);
     ~dlgRecognition();
 
     void setImage(dlgImage* imageDlg);
+
+private slots:
+    void btnAddClicked(bool cheked);
+    void btnRecognizeClicked(bool cheked);
 
 protected:
     void closeEvent(QCloseEvent * e);

@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     mymdiarea.cpp \
     dlgbinarization.cpp \
     moment.cpp \
-    dlgrecognition.cpp
+    dlgrecognition.cpp \
+    classitem.cpp
 
 HEADERS  += mainwindow.h \
     dlgimage.h \
@@ -35,7 +36,8 @@ HEADERS  += mainwindow.h \
     mymdiarea.h \
     dlgbinarization.h \
     moment.h \
-    dlgrecognition.h
+    dlgrecognition.h \
+    classitem.h
 
 FORMS    += mainwindow.ui \
     dlgimage.ui \
