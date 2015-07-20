@@ -274,6 +274,24 @@ QVector<Moment> ImageProcessor::centralMoments(){
 }
 QVector<Moment> ImageProcessor::scaleMoments(){
 
+    QVector<Moment> central_moments = this->centralMoments();
+    QVector<Moment> moments = central_moments;
+
+    double m00 = central_moments[0].getValue();
+
+    for(int m = 0; m < moments.size();m++){
+        Moment moment = moments[m];
+
+        double p = moment.getP();
+        double q = moment.getQ();
+
+        double value = central_moments[m].getValue();
+        value /= qPow(m00, (1 + ( (p+q) / 2 ) ));
+
+        moments[m].setValue(value);
+    }
+
+    return moments;
 }
 
 // Get Histogram Methods
