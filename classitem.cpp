@@ -22,15 +22,28 @@ QString ClassItem::getClassName(){
     return this->className;
 }
 
-double ClassItem::getDistance(QVector<double> vector, int option){
+double ClassItem::getDistance(QVector<double> vector, int metric){
 
     double distance = 0;
 
     for(int i = 0; i < this->vector.size(); i++){
-        distance += qPow(this->vector[i] - vector[i], 2);
+
+        if(metric == METRIC_ABSOLUTE){
+            distance += qAbs(this->vector[i] - vector[i]);
+        }
+        else if(metric == METRIC_EUCLIDEAN){
+            distance += qPow(this->vector[i] - vector[i], 2);
+        }
+        else if(metric == METRIC_INFINITE){
+            double absolute = qAbs(this->vector[i] - vector[i]);
+            distance = absolute > distance ? absolute : distance;
+        }
     }
 
-    distance = qSqrt(distance);
+    if(metric == METRIC_EUCLIDEAN){
+        distance = qSqrt(distance);
+    }
+
     return distance;
 }
 

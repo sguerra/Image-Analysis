@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QCloseEvent>
 #include <QPair>
+#include <QMap>
 #include "dlgimage.h"
 #include "imageprocessor.h"
 #include "classitem.h"

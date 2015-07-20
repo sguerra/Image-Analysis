@@ -80,6 +80,7 @@ void dlgRecognition::btnRecognizeClicked(bool cheked){
     if(this->imageDlg == NULL)
         return;
 
+    // get Hu Moments vector
     QImage image = this->imageDlg->getImage();
 
     this->imageProcessor.setImage(image);
@@ -88,14 +89,16 @@ void dlgRecognition::btnRecognizeClicked(bool cheked){
     this->imageProcessor.setImage(image);
     QVector<double> vector = this->imageProcessor.huMoments();
 
-    int k = 1;
-
+    // Sets Neighborhood
     QVector< QPair<ClassItem, double> > neighbors;
 
+    int metric = ui->rdbAbsolute->isChecked() ? METRIC_ABSOLUTE : ui->rdbEuclidean->isChecked() ? METRIC_EUCLIDEAN : METRIC_INFINITE;
+
     for(int i = 0; i < this->database.size(); i++){
-        neighbors.append( QPair<ClassItem, double>(this->database[i], this->database[i].getDistance(vector, 0)));
+        neighbors.append( QPair<ClassItem, double>(this->database[i], this->database[i].getDistance(vector, metric)));
     }
 
+    // Orders Neighborhood
     for(int i = 0; i < neighbors.size(); i++){
         for(int j = 1; j < neighbors.size(); j++){
             QPair<ClassItem, double> aux = neighbors[j];
@@ -107,7 +110,44 @@ void dlgRecognition::btnRecognizeClicked(bool cheked){
         }
     }
 
-    ui->txtResult->setText(neighbors[0].first.getClassName());
+    // Finds K Nearest Neighbor
+    int k = ui->txtK->text().toInt(0, 10);
+
+    if(k==0){
+        return;
+    }
+
+    QMap<QString, int> frequency;
+    QString result("NONE");
+
+    for(int i=0; i < k;i++){
+        QString classname = neighbors[i].first.getClassName();
+
+        if(frequency.contains(classname)){
+            frequency[classname]++;
+        }
+        else{
+            frequency.insert(classname, 1);
+        }
+    }
+
+    int max_frequency = 0;
+
+    QMap<QString, int>::const_iterator iterator = frequency.constBegin();
+    while (iterator != frequency.constEnd()) {
+
+        int value = iterator.value();
+        QString classname = iterator.key();
+
+        if(max_frequency < value){
+            max_frequency = value;
+            result = classname;
+        }
+
+        iterator++;
+    }
+
+    ui->txtResult->setText(result);
 }
 
 void dlgRecognition::closeEvent(QCloseEvent* e){
