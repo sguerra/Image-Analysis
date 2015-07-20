@@ -293,6 +293,32 @@ QVector<Moment> ImageProcessor::scaleMoments(){
 
     return moments;
 }
+QVector<double> ImageProcessor::huMoments(){
+
+    QVector<Moment> scale_moments = this->scaleMoments();
+    QVector<double> moments(7);
+
+    double n00 = scale_moments[0].getValue();
+    double n01 = scale_moments[1].getValue();
+    double n10 = scale_moments[2].getValue();
+    double n11 = scale_moments[3].getValue();
+    double n20 = scale_moments[4].getValue();
+    double n02 = scale_moments[5].getValue();
+    double n21 = scale_moments[6].getValue();
+    double n12 = scale_moments[7].getValue();
+    double n30 = scale_moments[8].getValue();
+    double n03 = scale_moments[9].getValue();
+
+    moments[0] = n20 + n02; // I1
+    moments[1] = qPow((n20 - n02), 2) + 4*qPow(n11, 2); // I2
+    moments[2] = qPow((n30 - 3*n12), 2) + qPow((3*n21 - n03), 2); // I3
+    moments[3] = qPow((n30 + n12), 2) + qPow((n21 + n03), 2); // I4
+    moments[4] = ((n30 - 3*n12)*(n30 + n12)*(qPow((n30 + n12), 2) - 3*qPow((n21 - n03), 2))) + ((3*n21 - n03)*(n21 + n03)*(3*qPow((n30 + n12) - qPow((n21 + n03), 2), 2))); // I5
+    moments[5] = ((n20 - n02)*(qPow((n30 + n12), 2) - qPow((n21 + n03), 2))) + (4*n11 * (n30 + n12) * (n21 + n03)); // I6
+    moments[6] = ((3*n21 - n03)*(n30 + n12)*(qPow((n30 + n12), 2) - 3*qPow((n21 + n03), 2))) - ((n30 - 3*n12)*(n21 + n03)*(3*(n30 + n12) - qPow((n21 + n03), 2))); // I7
+
+    return moments;
+}
 
 // Get Histogram Methods
 

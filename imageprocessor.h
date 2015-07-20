@@ -27,6 +27,7 @@ public:
     QVector<Moment> geoMoments();
     QVector<Moment> centralMoments();
     QVector<Moment> scaleMoments();
+    QVector<double> huMoments();
 
     QVector<double> histRed();
     QVector<double> histGreen();
