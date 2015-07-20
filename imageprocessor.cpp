@@ -2,8 +2,8 @@
 #include <QColor>
 #include <QtMath>
 
-const int ONE = 255;
-const int ZERO = 0;
+const int ONE = 0;
+const int ZERO = 255;
 
 ImageProcessor::ImageProcessor()
 {
@@ -177,7 +177,6 @@ int ImageProcessor::getOtsuThreshold(){
     return threshold;
 }
 
-
 // Hu Moments Methods
 
 QVector< QPair<double, double> >  ImageProcessor::getOnes(){
@@ -226,7 +225,7 @@ QVector<Moment> ImageProcessor::geoMoments(){
 
         double value = 0;
 
-        for(int i; i < ones.size();i++){
+        for(int i = 0; i < ones.size();i++){
 
             QPair<double, double> one = ones[i];
             double x = one.first;
@@ -259,7 +258,7 @@ QVector<Moment> ImageProcessor::centralMoments(){
         Moment moment = moments[m];
         double value = 0;
 
-        for(int i; i < ones.size();i++){
+        for(int i = 0; i < ones.size();i++){
 
             QPair<double, double> one = ones[i];
             double x = one.first;
@@ -272,6 +271,9 @@ QVector<Moment> ImageProcessor::centralMoments(){
     }
 
     return moments;
+}
+QVector<Moment> ImageProcessor::scaleMoments(){
+
 }
 
 // Get Histogram Methods
