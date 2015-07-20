@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionGrayscale, SIGNAL(triggered()), this, SLOT(gray_scale()));
     connect(ui->actionHistogram, SIGNAL(triggered()), this, SLOT(show_histogram()));
     connect(ui->actionBinarization, SIGNAL(triggered()), this, SLOT(show_binarization()));
+    connect(ui->actionRecognition, SIGNAL(triggered()), this, SLOT(show_recognition()));
 
     connect(&mdiArea, SIGNAL(subWindowActivated(QMdiSubWindow*)), this, SLOT(subwindow_changed(QMdiSubWindow*)));
 
@@ -42,6 +43,12 @@ MainWindow::MainWindow(QWidget *parent) :
     mdiArea.addSubWindow(binarizationDlg);
 
     binarizationDlg->parentWidget()->hide();
+
+    // Recognition dialog
+    recognitionDlg = new dlgRecognition(&mdiArea);
+    mdiArea.addSubWindow(recognitionDlg);
+
+    recognitionDlg->parentWidget()->hide();
 }
 
 MainWindow::~MainWindow()
@@ -72,6 +79,7 @@ void MainWindow::open()
 
     this->update_histogram();
     this->update_binarization();
+    this->update_recognition();
 }
 
 
@@ -126,6 +134,19 @@ void MainWindow::show_binarization()
     }
 }
 
+void MainWindow::show_recognition()
+{
+    QWidget* parent = recognitionDlg->parentWidget();
+    bool actionChecked = ui->actionRecognition->isChecked();
+
+    if(actionChecked){
+        parent->show();
+        this->update_recognition();
+    }else{
+        parent->hide();
+    }
+}
+
 void MainWindow::update_histogram()
 {
     dlgImage* selected = this->mdiArea.getSelectedWindow();
@@ -135,6 +156,12 @@ void MainWindow::update_binarization()
 {
     dlgImage* selected = this->mdiArea.getSelectedWindow();
     binarizationDlg->setImage(selected);
+}
+
+void MainWindow::update_recognition()
+{
+    dlgImage* selected = this->mdiArea.getSelectedWindow();
+    recognitionDlg->setImage(selected);
 }
 
 void MainWindow::subwindow_changed(QMdiSubWindow* window)
@@ -147,6 +174,7 @@ void MainWindow::subwindow_changed(QMdiSubWindow* window)
 
     this->histogramDlg->setImage(selectedWindow);
     this->binarizationDlg->setImage(selectedWindow);
+    this->recognitionDlg->setImage(selectedWindow);
 }
 
 
