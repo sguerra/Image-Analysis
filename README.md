@@ -11,8 +11,14 @@ Image Analisys School Project (Qt, C++)
 	- auto - *Otsu's method*
 	- manual
 - **Pattern recognition**
-	- recognize class
-	- add image to class
+	- recognize class - *Hu's moments + KNN algorithm*
+		- select *K* neighbors
+		- select distance metric
+			- absolute - *| x - x' |*
+			- euclidean - *( x - x' ) ^ 2*
+			- infinite - *| x > x' |*
+	- add image
+		- insert class name or create a new one
 
 
 ### Preview
